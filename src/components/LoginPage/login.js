@@ -1,6 +1,9 @@
 import React from 'react';
 import './style.scss';
 import Form from './Form/form';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as loginAction from '../../actionCreators/loginAction'
 
 const data = {
   loginTitle: 'Login',
@@ -15,8 +18,18 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLogged: ''
+      userLogged: '',
+      notAuthenticated:''
     }
+  }
+
+  componentDidMount(){
+    this.props.actions.fetchData();
+  }
+
+  authenticate(res) {
+    console.log('#####',res);
+    this.setState({notAuthenticated: res})
   }
 
   render() {
@@ -29,15 +42,32 @@ class Login extends React.Component {
               {data.loginTitle}
             </h2>
           </div>
-          <Form data={data} btnText={data.formBtnText} loginPage {...this.props} userLogged />
+          <Form data={data} btnText={data.formBtnText} loginPage {...this.props} authenticate = {this.authenticate.bind(this)} notAuthenticated = {this.state.notAuthenticated}/>
           <div className="reg">
             <p>New to Login?</p>
             <a href="/register">Create your account</a>
           </div>
+          {this.state.notAuthenticated === 'userIncorrect' &&
+            <p>
+              Username/Password doesn't matches
+            </p>
+          }
         </div>
       </div>
     )
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    loginFormData: state.loginData.loginFormData
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(loginAction, dispatch)
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

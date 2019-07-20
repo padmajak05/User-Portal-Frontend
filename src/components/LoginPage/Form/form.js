@@ -7,10 +7,11 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uvalue: props.userLogged,
+      uvalue: '',
       pvalue: '',
       result: props.result,
       success: '',
+      notAuthenticated: props.notAuthenticated,
     };
 
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
@@ -42,6 +43,10 @@ class Form extends Component {
     this.props.onSuccessValue(value);
   }
 
+  userDoesntExists(value) {
+    this.props.authenticate(value);
+  }
+
   onSubmit(event) {
     event.preventDefault();
     const formData = {
@@ -53,7 +58,12 @@ class Form extends Component {
       data: formData,
     }).then((res) => {
       if (res.data[0] !=undefined && res.data[0].username === formData.username && res.data[0].password === formData.password) {
-        this.props.history.push('/about');
+        this.props.history.push({
+          pathname: '/welcome',
+          state: { detail: formData.username} });
+      } else if(res.data == 'INVALID_USER_ID') {
+        this.setState({ notAuthenticated: 'userIncorrect' })
+        this.userDoesntExists(this.state.notAuthenticated);
       }
     }).catch((error)=>{
         throw error;

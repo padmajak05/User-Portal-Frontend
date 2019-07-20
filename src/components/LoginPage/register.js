@@ -20,6 +20,7 @@ class Login extends React.Component {
   }
 
   onSuccess(res) {
+    console.log("success")
     this.setState({result: res})
   }
 

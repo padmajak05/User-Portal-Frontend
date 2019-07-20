@@ -10,6 +10,17 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
   entry: "./src/app.js",
+  node: {
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      global: true,
+      crypto: "empty",
+      process: true,
+      module: false,
+      clearImmediate: false,
+      setImmediate: false
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index_bundle.js',

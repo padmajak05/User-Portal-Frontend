@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+
 const About = (props) => {
   return (
-    <div>
-      <h1>Welcome</h1>
-      {/* <a onClick={() => { props.history.push('/home') }}> </a> */}  
+    <div className="welcome">
+      <h1>Welcome {props.location.state.detail} </h1>
     </div>)
 }
 export default About;
