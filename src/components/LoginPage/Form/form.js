@@ -82,6 +82,9 @@ class Form extends Component {
     return (
       <form className="form" onSubmit={this.props.registerPage ? this.onRegisterSubmit : this.onSubmit}>
         <div className="form__field-wrapper">
+          <label className="form__field-label" htmlFor="username">
+            User Name
+          </label>
           <input
             className="form__field-input"
             type="text"
@@ -93,11 +96,12 @@ class Form extends Component {
             autoCapitalize="off"
             spellCheck="false"
           />
-          <label className="form__field-label" htmlFor="username">
-            User Name
-          </label>
+          <span className="focus-input100" data-symbol=""></span>
         </div>
         <div className="form__field-wrapper">
+          <label className="form__field-label" htmlFor="password">
+            Password
+          </label>
           <input
             className="form__field-input"
             id="password"
@@ -106,9 +110,7 @@ class Form extends Component {
             onChange={this.changePassword}
             placeholder="••••••••••"
           />
-          <label className="form__field-label" htmlFor="password">
-            Password
-          </label>
+          <span className="focus-input100" data-symbol=""></span>
         </div>
         <div className="form__submit-btn-wrapper">
           <button className="form__submit-btn" type="submit">

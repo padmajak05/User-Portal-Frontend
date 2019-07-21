@@ -50,23 +50,33 @@
 
 .form__submit-btn-wrapper {
   padding: 2em 1em 1em;
-  width: 90%;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
+  //margin-top: 20px;
 }
 
 .form__submit-btn {
+  width: 73%;
+  height: 45px;
+  background: #a64bf4;
+  background: -webkit-linear-gradient(left, #14684d, #4be7b6);
+  background: -o-linear-gradient(left, #14684d, #4be7b6);
+  background: -moz-linear-gradient(left, #14684d,#4be7b6);
+  background: linear-gradient(left, #14684d, #4be7b6);
+  top: 0;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
   border: none;
   background-color: #fff;
   border: 1px solid #6CC0E5;
   padding: 0.5em 1em;
-  border-radius: 3px;
+  border-radius: 30px;
   background-color: #6CC0E5;
   color: white;
   display: block;
   margin: 0 auto;
   position: relative;
+  font-weight:bold;
 }
 
 .js-form__err-animation {
